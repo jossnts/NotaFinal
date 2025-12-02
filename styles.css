@@ -1,0 +1,134 @@
+/* Estilo Base: Fundo de papel reciclado e fonte simples */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f7f7f7; /* Cor de parede clara */
+    color: #333;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+h1 {
+    color: #4CAF50; /* Verde de quadro-negro */
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+}
+
+/* Container Principal e Formulários */
+#formularioNotas, #authContainer {
+    background-color: #FFFBEA; /* Cor de papel amarelado/off-white */
+    border: 1px solid #c0c0c0;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 450px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Inputs e Seleção */
+input[type="email"],
+input[type="password"],
+input[type="number"],
+select {
+    padding: 10px;
+    border: 1px solid #D2B48C; /* Borda cor de madeira/lápis */
+    border-radius: 4px;
+    font-size: 1em;
+    width: 100%; /* Ocupa a largura total do container */
+    box-sizing: border-box;
+}
+
+/* Botões */
+button {
+    background-color: #4CAF50; /* Verde Escola */
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Botões de Login/Cadastro em linha */
+#authContainer button {
+    flex-grow: 1;
+    margin-top: 5px;
+}
+#authContainer div {
+    display: flex;
+    gap: 10px;
+}
+
+
+/* Área de Mensagens e Resultado */
+#resultado, #authMessage {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 4px;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+    max-width: 450px;
+}
+
+/* Estilo do Histórico (Simulando um Caderno de Notas) */
+#historicoNotas {
+    width: 100%;
+    max-width: 500px;
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #FFF; /* Fundo branco para se destacar */
+    border: 1px solid #ADD8E6; /* Borda cor azul de caderno */
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#historicoNotas h2 {
+    color: #1E90FF; /* Azul de tinta de caneta */
+    border-bottom: 1px dashed #ccc;
+    padding-bottom: 5px;
+}
+
+/* Item de Nota Individual */
+.notaItem {
+    padding: 10px;
+    border-left: 5px solid #FF4500; /* Linha lateral (margem vermelha) */
+    margin-top: 10px;
+    background-color: #FAFAFA;
+    border-radius: 3px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.notaItem h3 {
+    margin-top: 0;
+    color: #333;
+}
+
+/* Estilos de Status (Para usar com cores nas mensagens) */
+.status.verde {
+    color: green;
+    font-weight: bold;
+}
+.status.vermelho {
+    color: red;
+    font-weight: bold;
+}
+
+/* Esconder elementos por padrão (controlado pelo JS) */
+#formularioNotas {
+    display: none; 
+}
+#btnLogout {
+    background-color: #D32F2F; /* Vermelho para destaque */
+}
