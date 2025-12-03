@@ -3,120 +3,171 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora de Média Final Escolar</title>
+    <title>Calculadora de Média Escolar</title>
     <link rel="stylesheet" href="styles.css">
-    </head>
+</head>
 <body>
 
-    <h1>Calcular Média Final</h1>
+    <div id="main-content">
 
-    <form id="formularioNotas" method="post">
+        <div id="tela-login" class="layout-duplo">
+            
+            <div class="painel-branco">
+                <div class="cabecalho-painel">
+                    <div class="icone-decorativo">✦</div>
+                    <h2>Acesse sua conta</h2>
+                    <p>Olá Estudante!</p>
+                </div>
 
-        <label for="materia">Selecione a matéria:</label>
-        <select name="materia" id="materia" required>
-            <option value="Matemática">Matemática</option>
-            <option value="Português">Português</option>
-            <option value="Espanhol">Espanhol</option>
-            <option value="História">História</option>
-            <option value="Geografia">Geografia</option>
-            <option value="Inglês">Inglês</option>
-            <option value="Artes">Artes</option>
-            <option value="Educação Física">Educação Física</option>
-            <option value="Filosofia">Filosofia</option>
-            <option value="Sociologia">Sociologia</option>
-            <option value="Aprof. Matemática">Aprofundamento em Matemática</option>
-            <option value="Aprof. CHS">Aprofundamento em Ciências Humanas</option>
-            <option value="Projeto Integrador">Projeto Integrador</option>
-            <option value="Literatura">Literatura</option>
-            <option value="Escrita Criativa">Escrita Criativa</option>
-            <option value="Química">Química</option>
-            <option value="Física">Física</option>
-            <option value="Biologia">Biologia</option>
-            <option value="Educação Financeira">Educação Financeira</option>
-                </select>
-        <label for="notaPrimeiro">Nota do 1º Trimestre:</label>
-        <input type="number" 
-               id="notaPrimeiro" 
-               name="notaPrimeiro" 
-               min="0" 
-               max="10.0" 
-               step="0.1" 
-               required>
+                <div id="authContainer">
+                    <input type="email" id="authEmail" placeholder="Seu email..." required> 
+                    <input type="password" id="authSenha" placeholder="Sua senha..." required>
+                    
+                    <div class="grupo-botoes-vertical">
+                        <button id="btnLogin" class="btn-primario">Entrar</button>
+                        <button id="btnCadastrar" class="btn-secundario">Cadastrar-se</button>
+                    </div>
+                    
+                    <div class="separador">ou</div>
 
-        <label for="notaSegundo">Nota do 2º Trimestre:</label>
-        <input type="number" 
-               id="notaSegundo" 
-               name="notaSegundo" 
-               min="0" 
-               max="10.0" 
-               step="0.1" 
-               required>
+                    <button id="btnAnonimo" class="btn-terciario">Entrar sem cadastro</button>
+                </div>
+                <p id="authMessage"></p>
+            </div>
 
-        <label for="notaTerceiro">Nota do 3º Trimestre:</label>
-        <input type="number" 
-               id="notaTerceiro" 
-               name="notaTerceiro" 
-               min="0" 
-               max="10.0" 
-               step="0.1" 
-               required>
+        
 
-        <button type="submit">Calcular Média</button>
-    </form>
+            <div class="painel-informativo">
+                <div class="icone-decorativo">✦</div>
+                <h2>Organize sua vida escolar.</h2>
+                <p class="subtitulo">Cadastre-se para salvar suas notas na nuvem e acessar quando quiser.</p>
 
-    <div id="resultado">
+                <ul class="lista-beneficios">
+                    <li>✓ Descubra quanto precisa tirar no próximo trabalho.</li>
+                    <li>✓ Calculamos sua Média Final automaticamente (considerando os pesos 3, 3 e 4).</li>
+                    <li>✓ Suas notas ficam salvas e seguras.</li>
+                    <li>✓ Edite ou exclua notas se lançar errado.</li>
+                </ul>
+            </div>
+           </div>
+        
 
-        </div>
+        <div id="tela-dashboard" class="layout-duplo" style="display: none;">
+            
+            <div class="painel-branco">
+                <div class="cabecalho-painel">
+                    <h2>Suas Notas Salvas</h2>
+                    <button id="btnLogout" class="btn-pequeno-sair">Sair da Conta</button>
+                </div>
+                
+                <div id="saudacao-usuario"></div>
 
+                <div id="historicoNotas">
+                    <ul id="listaNotas"></ul>
+                </div>
+            </div>
 
+            <div class="painel-branco">
+                <div class="cabecalho-painel">
+                    <h2>Calculadora</h2>
+                </div>
 
-        <div id="authContainer">
-            <h2>Acesso Ao Histórico</h2>
-            <input type="email" id="authEmail" placeholder="Seu Email..." required> 
-            <input type="password" id="authSenha" placeholder="Sua Senha..." required>
+                <form id="formularioParcial" class="form-bloco">
+                    <h3>1. Média do Trimestre Atual</h3>
+                    
+                    <div class="linha-form">
+                        <label>Escala:</label>
+                        <select id="escalaNotas">
+                            <option value="10">0 a 10</option>
+                            <option value="100">0 a 100</option>
+                        </select>
+                    </div>
 
-            <button id="btnCadastrar">Cadastrar</button>
-            <button id="btnLogin">Login</button>
+                    <div id="containerNotasTrabalhos">
+                        <div class="input-grupo">
+                            <label>Trabalho 1:</label>
+                            <input type="number" id="trabalho1" min="0" step="0.1">
+                        </div>
+                        <div class="input-grupo">
+                            <label>Trabalho 2:</label>
+                            <input type="number" id="trabalho2" min="0" step="0.1">
+                        </div>
+                    </div>
 
-        </div>
-        <p id="authMessage"></p>
+                    <div class="grupo-botoes-horizontal">
+                        <button type="button" id="btnAddTrabalho" class="btn-pequeno">+ Trab</button>
+                        <button type="button" id="btnRemoverTrabalho" class="btn-pequeno">- Trab</button>
+                        <button type="button" id="btnLimparTudo" class="btn-pequeno">Limpar</button>
+                    </div>
 
-        <button id="btnLogout" style="margin-top: 20px;">Sair / Logout</button>
+                    <button type="submit" class="btn-acao">Calcular Média Trimestral</button>
+                </form>
+                
+                <div id="resultadoParcial" class="resultado-box"></div>
 
+                <hr class="divisoria">
 
-       <div id="historicoNotas">
-            <h2>Histórico de Notas</h2>
-            <ul id="listaNotas"></ul>
-        </div>
-    </body>
+                <form id="formularioNotas" method="post" class="form-bloco">
+                    <h3>2. Média Final (Aprovação)</h3>
+                    <p class="legenda">Calcula a média final com os pesos corretos.</p>
+                    
+                    <label>Matéria:</label>
+                    <select name="materia" id="materia" required>
+                        <option value="Matemática">Matemática</option>
+                        <option value="Português">Português</option>
+                        <option value="História">História</option>
+                        <option value="Geografia">Geografia</option>
+                        <option value="Ciências">Ciências</option>
+                        <option value="Inglês">Inglês</option>
+                        <option value="Artes">Artes</option>
+                        <option value="Educação Física">Educação Física</option>
+                    </select>
+                    
+                    <div class="grid-notas">
+                        <div>
+                            <label>1º Trim:</label>
+                            <input type="number" id="notaPrimeiro" step="0.1">
+                        </div>
+                        <div>
+                            <label>2º Trim:</label>
+                            <input type="number" id="notaSegundo" step="0.1">
+                        </div>
+                        <div>
+                            <label>3º Trim:</label>
+                            <input type="number" id="notaTerceiro" step="0.1">
+                        </div>
+                    </div>
 
+                    <div class="grupo-botoes-vertical">
+                        <button type="button" id="calculoNota" class="btn-secundario">Apenas Calcular</button>
+                        <button type="submit" class="btn-primario">Salvar no Histórico</button>
+                    </div>
+                </form>
+
+                <div id="resultado" class="resultado-box"></div>
+            </div>
+    </div>
+
+    </div>
 
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
 
-<script>
-  // Suas chaves de configuração do passo 1 vão aqui
-const firebaseConfig = {
-  apiKey: "AIzaSyBi53VsScK3bMP5bEO_g2ilGlPjh8-24Go",
-  authDomain: "calculo-de-notas.firebaseapp.com",
-  projectId: "calculo-de-notas",
-  storageBucket: "calculo-de-notas.firebasestorage.app",
-  messagingSenderId: "155321782972",
-  appId: "1:155321782972:web:2d2b0c678f132433f6b6b9",
-  measurementId: "G-P2CSX0333G"
-};
-
-  // Inicializa o Firebase
-  const app = firebase.initializeApp(firebaseConfig);
-  // Inicializa os serviços que você vai usar
-  const db = app.firestore();
-  const auth = app.auth();
-
-  // Você pode agora usar 'db' e 'auth' no seu código JavaScript!
-</script>
-
-
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyBi53VsScK3bMP5bEO_g2ilGlPjh8-24Go",
+            authDomain: "calculo-de-notas.firebaseapp.com",
+            projectId: "calculo-de-notas",
+            storageBucket: "calculo-de-notas.firebasestorage.app",
+            messagingSenderId: "155321782972",
+            appId: "1:155321782972:web:2d2b0c678f132433f6b6b9",
+            measurementId: "G-P2CSX0333G"
+        };
+        const app = firebase.initializeApp(firebaseConfig);
+        const db = app.firestore();
+        const auth = app.auth();
+    </script>
     <script src="calculos.js"></script>
-
+</body>
 </html>
