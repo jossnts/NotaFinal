@@ -153,14 +153,14 @@ button {
 .btn-terciario:hover { background: #d0d0d0; }
 
 .btn-acao {
-    background-color: #27ae60; /* Verde */
-    color: white;
+    background-color:#1a1a1a; /* Verde */
+    color:white;
     padding: 12px;
     border-radius: 8px;
     width: 100%;
     margin-top: 10px;
 }
-.btn-acao:hover { background-color: #219150; }
+.btn-acao:hover { background-color: #333; }
 
 .btn-pequeno {
     flex: 1;
