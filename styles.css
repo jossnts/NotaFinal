@@ -37,7 +37,7 @@ body {
     padding: 30px;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    flex: 1; /* Ocupa espaço igual */
+    flex: 2; /* Ocupa espaço igual */
 }
 
 /* Painel Informativo (Direita do Login) */
@@ -45,6 +45,7 @@ body {
     flex: 1;
     padding: 40px;
     color: #444;
+    position: relative;
 }
 
 .cabecalho-painel {
@@ -178,7 +179,7 @@ button {
     font-size: 0.8rem;
     position: absolute; /* Para alinhar no topo do card */
     top: 20px;
-    right: 20px;
+    right: 455px;
 }
 
 .separador {
@@ -238,6 +239,10 @@ button {
 #historicoNotas ul {
     list-style: none;
     padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    padding: 10px 0;
 }
 
 .notaItem {
@@ -269,4 +274,56 @@ button {
 /* Esconder elementos controlados pelo JS */
 #formularioNotas, #formularioParcial, #historicoNotas {
     display: block; /* Agora controlado pelo container pai */
+}
+
+/* --- ESTILO DO HISTÓRICO EM GRADE --- */
+
+/* Aplica a Grade no container da lista */
+#historicoNotas ul {
+    list-style: none;
+    padding: 0;
+    
+    /* 1. Define o GRID */
+    display: grid;
+    /* 2. Cria as colunas: 3 colunas de largura igual (1fr) */
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 15px; /* Espaçamento entre os cartões */
+    padding: 10px 0; /* Padding sutil */
+}
+
+/* Estilo de cada item (cada nota) */
+.notaItem {
+    /* Mantém o estilo de cartão limpo que você já tem */
+    background: #fff;
+    border-left: 4px solid #333; /* Detalhe lateral */
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    border-radius: 4px;
+    /* Remove a margem inferior, pois o gap já a controla */
+    margin-bottom: 0; 
+}
+
+/* Responsividade (Ajuste para Celulares e Tablets) */
+@media (max-width: 1100px) {
+    /* Em telas de tablet, usa 2 colunas */
+    #historicoNotas ul {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    /* Em telas de celular, usa 1 coluna */
+    #historicoNotas ul {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Garante que o painel de histórico seja um pouco menor para a grade caber */
+.painel-branco {
+    flex: 1.5; /* Faz o painel de notas ser um pouco maior que o outro */
+}
+
+/* O outro painel pode ser fixo */
+.painel-informativo {
+    flex: 1; 
 }

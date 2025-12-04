@@ -56,20 +56,8 @@
             
             <div class="painel-branco">
                 <div class="cabecalho-painel">
-                    <h2>Suas Notas Salvas</h2>
-                    <button id="btnLogout" class="btn-pequeno-sair">Sair da Conta</button>
-                </div>
-                
-                <div id="saudacao-usuario"></div>
-
-                <div id="historicoNotas">
-                    <ul id="listaNotas"></ul>
-                </div>
-            </div>
-
-            <div class="painel-branco">
-                <div class="cabecalho-painel">
                     <h2>Calculadora</h2>
+                    <button id="btnLogout" class="btn-pequeno-sair">Sair da Conta</button>
                 </div>
 
                 <form id="formularioParcial" class="form-bloco">
@@ -102,25 +90,36 @@
 
                     <button type="submit" class="btn-acao">Calcular Média Trimestral</button>
                 </form>
-                
-                <div id="resultadoParcial" class="resultado-box"></div>
 
-                <hr class="divisoria">
+                 <div id="resultadoParcial" class="resultado-box"></div>
 
-                <form id="formularioNotas" method="post" class="form-bloco">
+                   <hr class="divisoria">
+
+                     <form id="formularioNotas" method="post" class="form-bloco">
                     <h3>2. Média Final (Aprovação)</h3>
                     <p class="legenda">Calcula a média final com os pesos corretos.</p>
                     
                     <label>Matéria:</label>
                     <select name="materia" id="materia" required>
-                        <option value="Matemática">Matemática</option>
-                        <option value="Português">Português</option>
-                        <option value="História">História</option>
-                        <option value="Geografia">Geografia</option>
-                        <option value="Ciências">Ciências</option>
-                        <option value="Inglês">Inglês</option>
-                        <option value="Artes">Artes</option>
-                        <option value="Educação Física">Educação Física</option>
+                             <option value="Matemática">Matemática</option>
+            <option value="Português">Português</option>
+            <option value="Espanhol">Espanhol</option>
+            <option value="História">História</option>
+            <option value="Geografia">Geografia</option>
+            <option value="Inglês">Inglês</option>
+            <option value="Artes">Artes</option>
+            <option value="Educação Física">Educação Física</option>
+            <option value="Filosofia">Filosofia</option>
+            <option value="Sociologia">Sociologia</option>
+            <option value="Aprof. Matemática">Aprofundamento em Matemática</option>
+            <option value="Aprof. CHS">Aprofundamento em Ciências Humanas</option>
+            <option value="Projeto Integrador">Projeto Integrador</option>
+            <option value="Literatura">Literatura</option>
+            <option value="Escrita Criativa">Escrita Criativa</option>
+            <option value="Química">Química</option>
+            <option value="Física">Física</option>
+            <option value="Biologia">Biologia</option>
+            <option value="Educação Financeira">Educação Financeira</option>
                     </select>
                     
                     <div class="grid-notas">
@@ -145,10 +144,21 @@
                 </form>
 
                 <div id="resultado" class="resultado-box"></div>
-            </div>
-    </div>
+                <div class="cabecalho-painel" style="margin-top: 40px;">
+                    <h2>Suas Notas Salvas</h2>
+                </div>
 
-    </div>
+                  <div id="historicoNotas">
+                    <ul id="listaNotas"></ul>
+                </div>
+            </div>
+        
+
+              
+
+       
+</div>
+                
 
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>

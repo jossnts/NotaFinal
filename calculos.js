@@ -8,6 +8,8 @@ let Temporizador;
 
 let idNotaEditando = null; //variável para armazenar o ID da nota que está sendo editada
 
+
+
  function carregarHistorico() {
         const user = auth.currentUser; //verifica o usuario logado
         const historicoDiv = document.getElementById('listaNotas');
@@ -31,7 +33,7 @@ let idNotaEditando = null; //variável para armazenar o ID da nota que está sen
             const idNota = doc.id; //pega o ID do documento
             const corStatus = nota.statusAprovacao === 'Aprovado' ? 'verde' : 'vermelho'; //se aprovado, cor verde, se reprovado, cor vermelho
 
-            htmlHistorico += `<div class="notaItem" id="nota-${idNota}"> 
+            htmlHistorico += `<li class="notaItem" id="nota-${idNota}"> 
                 <h3>Matéria: ${nota.materia}</h3>
                 <p>1º Trimestre: ${nota.notaPrimeiro}</p>
                 <p>2º Trimestre: ${nota.notaSegundo}</p>
@@ -44,9 +46,9 @@ let idNotaEditando = null; //variável para armazenar o ID da nota que está sen
                     <button class="btn-editar" onclick="prepararEdicao('${idNota}', '${nota.materia}', ${nota.notaPrimeiro}, ${nota.notaSegundo}, ${nota.notaTerceiro})">Editar</button>
                     <button class="btn-excluir" onclick="deletarNota('${idNota}', '${nota.materia}')">Excluir</button>
                 </div>
-            </div>
+            </li>
             `;
-            carregarHistorico();
+            
             
               
            });
@@ -293,7 +295,7 @@ auth.onAuthStateChanged((user) => {
         telaDashboard.style.display = "flex";
 
 
-        carregarHistorico(); //chama a função para carregar o histórico de notas 
+        carregarHistorico(); //atualiza o histórico após adicionar a nota
 
     } else { //se não está logado
         console.log("Usuário não está logado.");
@@ -321,6 +323,32 @@ auth.onAuthStateChanged((user) => {
 document.getElementById('btnLogout').addEventListener('click', () => {
     limparTemporizador()
     // O método signOut() do Firebase encerra a sessão do usuário
+    
+    const user = auth.currentUser; //verifica o usuario logado
+    const authMessage = document.getElementById('authMessage')
+
+    if (!user) {
+        auth.signOut(); // Simplesmente encerra qualquer sessão residual
+        authMessage.textContent = 'Você não estava logado.';
+        return; 
+    }
+
+
+    if (user.isAnonymous) {
+
+        const uid = user.uid
+
+        deletarAnonimo(uid)
+        .finally(() => {
+
+
+            user.delete()
+            .then(() => {
+                console.log("Usuário anônimo deletado após logout.");
+            })
+        })
+
+    } else {
     auth.signOut( ) 
         .then(() => {
             // Sucesso no Logout
@@ -328,12 +356,14 @@ document.getElementById('btnLogout').addEventListener('click', () => {
             // O onAuthStateChanged (que você já fez) automaticamente
             // detecta essa mudança e esconde o formulário, mostrando a tela de login.
 
+        
+
 
         location.reload(true);
         
             // Opcional: Exibe uma mensagem na tela de login
             document.getElementById('authMessage').textContent = 'Você deslogou com sucesso.';
-            carregarHistorico(); //atualiza o histórico após adicionar a nota
+            
         })
 
        
@@ -343,6 +373,8 @@ document.getElementById('btnLogout').addEventListener('click', () => {
             console.error("Erro ao deslogar:", error);
             document.getElementById('authMessage').textContent = `Erro ao deslogar: ${error.message}`;
         });
+
+    }
 
       
 
@@ -525,4 +557,25 @@ function limparBotao() {
 }
 
 limparBotao();
+
+
+function deletarAnonimo(uid) {
+    return db.collection('usuarios').doc(uid).collection('notas').get() //pega todas as notas do usuário anônimo
+        .then(snapshot => {
+            const batch = db.batch();
+            snapshot.forEach((doc) => {
+                batch.delete(doc.ref);
+            });
+            return batch.commit();
+        })
+        .then(() => {
+            console.log("Dados do usuário anônimo deletados com sucesso.");
+            return db.collection('usuarios').doc(uid).delete() //deleta o documento do usuário anônimo
+        }
+    )
+        
+
+    }
+
+
 
