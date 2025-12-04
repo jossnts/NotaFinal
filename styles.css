@@ -1,17 +1,28 @@
 /* Reseta e Fonte Base */
+/* Define que a largura de qualquer elemento inclui padding e borda */
+* {
+    box-sizing: border-box; 
+    margin: 0;
+    padding: 0; 
+}
+
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     background-color: #f5f5f7; /* Cinza bem clarinho estilo Apple/Notion */
     color: #333;
     margin: 0;
     padding: 20px;
+    min-height: 100vh;
+    width: 100%;
     display: flex;
     justify-content: center;
+    overflow-x: hidden;
 }
 
 #main-content {
     width: 100%;
-    max-width: 1000px;
+    max-width: 100%;
+    margin: 0 auto;
 }
 
 /* Layout de Colunas (Grid) */
@@ -23,11 +34,22 @@ body {
 
 /* Responsividade: Celular fica um embaixo do outro */
 @media (max-width: 768px) {
+
+    #main-content {
+        flex-direction: column;
+    }
+
     .layout-duplo {
         flex-direction: column;
     }
     .painel-branco, .painel-informativo {
         width: 100% !important;
+        flex: none;
+        padding: 20px;
+    }
+
+    #historicoNotas ul {
+        grid-template-columns: 1fr;
     }
 }
 
