@@ -64,11 +64,9 @@
                     <h3>1. Média do Trimestre Atual</h3>
                     
                     <div class="linha-form">
-                        <label>Escala:</label>
-                        <select id="escalaNotas">
-                            <option value="10">0 a 10</option>
-                            <option value="100">0 a 100</option>
-                        </select>
+                        <label>Média de Aprovação:</label>
+                        <input id="escalaNotas" placeholder="Qual a sua média de aprovação?" required type="number"> 
+                         
                     </div>
 
                     <div id="containerNotasTrabalhos">
@@ -125,15 +123,15 @@
                     <div class="grid-notas">
                         <div>
                             <label>1º Trim:</label>
-                            <input type="number" id="notaPrimeiro" step="0.1">
+                            <input type="number" id="notaPrimeiro" step="0.1" class="notas" required>
                         </div>
                         <div>
                             <label>2º Trim:</label>
-                            <input type="number" id="notaSegundo" step="0.1">
+                            <input type="number" id="notaSegundo" step="0.1" class="notas" required>
                         </div>
                         <div>
                             <label>3º Trim:</label>
-                            <input type="number" id="notaTerceiro" step="0.1">
+                            <input type="number" id="notaTerceiro" step="0.1" class="notas" required>
                         </div>
                     </div>
 

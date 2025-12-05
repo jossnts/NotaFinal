@@ -10,6 +10,7 @@ let idNotaEditando = null; //variável para armazenar o ID da nota que está sen
 
 
 
+
  function carregarHistorico() {
         const user = auth.currentUser; //verifica o usuario logado
         const historicoDiv = document.getElementById('listaNotas');
@@ -138,14 +139,85 @@ const notaTerceiro = parseFloat(document.getElementById('notaTerceiro').value);
 
 const materia = document.getElementById('materia').value;
 
+let erroNaValidade = false;
+
+var media = document.getElementById("escalaNotas").value
+
+//novo esquema de escala : o usuario tem um input que ele coloca QUAL A MÉDIA DE APROVAÇÃO DELE, ai o java script pega o valor do input, e coloco dentro de uma variavel, ai eu faço, se a escala for 10, a média de aprovação não pode ser maior que 10, e vice versa, mas enfim, ai eu faço, se maximo for 10, e a media de aprovação for = ou menor que o maximo,
+
+//se a escala for 10, ele pega a media de aprovação e ve, o valor dela é = ou menor que 10?, então faz o calculo normal
+
+//media de aprovação: 70, se calcular media for => que media de aprovação
+
+
+var mediaInput = document.getElementById("escalaNotas")
+
+ if (mediaInput.value.trim() === '') {
+    mediaInput.setCustomValidity("Preencha este campo")
+    mediaInput.reportValidity()
+    erroNaValidade = true;
+     return;
+ }
+ // Limpa a validação se o campo estiver OK
+    mediaInput.setCustomValidity(""); 
+    mediaInput.reportValidity();
+
+
+ const inputsDeNota = document.querySelectorAll('.notas');
+
+
+    inputsDeNota.forEach((input) => {
+
+        
+ if (input.value.trim() === '') {
+    input.setCustomValidity("Preencha este campo")
+    input.reportValidity()
+    erroNaValidade = true;
+    return;
+ }
+  input.setCustomValidity(""); 
+    input.reportValidity();
+
+        if (input.value <= 10 && media == 6 || media == 7 || media == 8 || media == 5 || media == 4 || media == 3 || media == 2 || media == 1 || media == 9 || media == 10 ) {
+
+
+        input.setAttribute('max', 10);
+        input.setAttribute('step', 10 ? '0.1' : '1.0'); //se for escala 10, passo de 0.1, se for 100, passo de 1.0
+        if (input.value.trim() > 10 ) {
+            input.setCustomValidity(`O valor deve ser menor ou igual a 10.`)
+            input.reportValidity()
+            erroNaValidade = true;
+            return;
+        } 
+
+        input.setCustomValidity(""); 
+    input.reportValidity();
+
+        } else {
+        input.setAttribute('max', 100);
+        input.setAttribute('step', 100 ? '0.1' : '1.0'); //se for escala 10, passo de 0.1, se for 100, passo de 1.0
+        }
+
+    
+    })
+
+    if (erroNaValidade == true) {
+        return;
+    } 
+
 
 const calcularMediaFinal = (notaPrimeiro * 3 + notaSegundo * 3 + notaTerceiro * 4) / 10;
 
-if (calcularMediaFinal >= 6) {
+  
+
+
+if (calcularMediaFinal >= media) {
     resultadoDiv.innerHTML = `Média Final: ${calcularMediaFinal} - Parabéns você está Aprovado em ${materia}!`;
 } else { 
     resultadoDiv.innerHTML = `Média Final: ${calcularMediaFinal} - Infelizmente você está Reprovado em ${materia}.`;
 }
+
+
 
 
 });
@@ -162,7 +234,7 @@ if (calcularMediaFinal >= 6) {
         return; //INTERROMPE A EXECUÇÃO SE NÃO ESTIVER LOGADO
     }
 
-
+let erroNaValidade = false;
 
 
 const notaPrimeiro = parseFloat(document.getElementById('notaPrimeiro').value);
@@ -171,16 +243,76 @@ const notaTerceiro = parseFloat(document.getElementById('notaTerceiro').value);
 
 const materia = document.getElementById('materia').value;
 
+var media = document.getElementById("escalaNotas").value;
+
+
+var mediaInput = document.getElementById("escalaNotas")
+
+ if (mediaInput.value.trim() === '') {
+    mediaInput.setCustomValidity("Preencha este campo")
+    mediaInput.reportValidity()
+    erroNaValidade = true;
+     return;
+ }
+ // Limpa a validação se o campo estiver OK
+    mediaInput.setCustomValidity(""); 
+    mediaInput.reportValidity();
+
+
+ const inputsDeNota = document.querySelectorAll('.notas');
+
+
+    inputsDeNota.forEach((input) => {
+
+        
+ if (input.value.trim() === '') {
+    input.setCustomValidity("Preencha este campo")
+    input.reportValidity()
+    erroNaValidade = true;
+    return;
+ }
+  input.setCustomValidity(""); 
+    input.reportValidity();
+
+        if (input.value <= 10 && media == 6 || media == 7 || media == 8 || media == 5 || media == 4 || media == 3 || media == 2 || media == 1 || media == 9 || media == 10 ) {
+
+
+        input.setAttribute('max', 10);
+        input.setAttribute('step', 10 ? '0.1' : '1.0'); //se for escala 10, passo de 0.1, se for 100, passo de 1.0
+        if (input.value.trim() > 10 ) {
+            input.setCustomValidity(`O valor deve ser menor ou igual a 10.`)
+            input.reportValidity()
+            erroNaValidade = true;
+            return;
+        } 
+
+        input.setCustomValidity(""); 
+    input.reportValidity();
+
+        } else {
+        input.setAttribute('max', 100);
+        input.setAttribute('step', 100 ? '0.1' : '1.0'); //se for escala 10, passo de 0.1, se for 100, passo de 1.0
+        }
+
+    
+    })
+
+    if (erroNaValidade == true) {
+        return;
+    } 
+
 
 const calcularMediaFinal = (notaPrimeiro * 3 + notaSegundo * 3 + notaTerceiro * 4) / 10;
 
-if (calcularMediaFinal >= 6) {
+
+
+if (calcularMediaFinal >= media) {
     resultadoDiv.innerHTML = `Média Final: ${calcularMediaFinal} - Parabéns você está Aprovado em ${materia}!`;
 } else { 
     resultadoDiv.innerHTML = `Média Final: ${calcularMediaFinal} - Infelizmente você está Reprovado em ${materia}.`;
 }
 
-const status = calcularMediaFinal >= 6 ? 'Aprovado' : 'Reprovado';
+const status = calcularMediaFinal >= media ? 'Aprovado' : 'Reprovado';
 
 const dadosDoAluno = {
     notaPrimeiro: notaPrimeiro,
@@ -437,8 +569,6 @@ document.getElementById('formularioParcial').addEventListener('submit', function
     event.preventDefault(); //impede o comportamento padrão do formulário
 
     const inputNotas = document.querySelectorAll('#containerNotasTrabalhos input'); //seleciona todos os inputs dentro do container
-    const escalaSelecionada = document.getElementById('escalaNotas').value;
-    const maximo = parseInt(escalaSelecionada); //sera 10 ou 100, porque é valor das opções do select
 
 
     let somaNotas = 0;
@@ -458,17 +588,12 @@ document.getElementById('formularioParcial').addEventListener('submit', function
 
 const mediaAtual = numTrabalhos > 0 ? (somaNotas / numTrabalhos) : 0; //calcula a média atual
 
+var media = document.getElementById("escalaNotas").value
+
 const resultadoDiv = document.getElementById('resultadoParcial');
 
-var notaDesejada = 6.0;
+var notaDesejada = media;
 
-
-
-if (maximo === 100) {
-    notaDesejada = 60.0; //se a escala for 100, a nota desejada é 60
-} else {
-    notaDesejada = 6.0; //se a escala for 10, a nota desejada é 6
-}
 
 
 
@@ -483,9 +608,14 @@ if (mediaAtual >= notaDesejada) {
 }
 
 else {
+
     var notaNecessaria = (notaDesejada * (numTrabalhos + 1)) - somaNotas; //calcula a nota necessária no próximo trabalho
-    if (notaNecessaria > maximo) {
-        mensagem += `Infelizmente, mesmo que você tire a nota máxima de ${maximo} no próximo trabalho, não será suficiente para atingir a média necessária de ${notaDesejada} para aprovação neste trimestre.`;
+    console.log(notaNecessaria)
+
+   if (media == 6 || media == 7 || media == 8 || media == 5 || media == 4 || media == 3 || media == 2 || media == 1 || media == 9 || media == 10) {
+
+    if (notaNecessaria > 10) {
+        mensagem += `Infelizmente, mesmo que você tire a nota máxima no próximo trabalho, não será suficiente para atingir a média necessária de ${notaDesejada} para aprovação neste trimestre.`;
     }
     else if (notaNecessaria <= 0) {
         mensagem += `Parabéns! Você já atingiu a média necessária de ${notaDesejada} para aprovação neste trimestre.`;
@@ -493,7 +623,19 @@ else {
     else {
         mensagem += `Você precisa tirar pelo menos ${notaNecessaria.toFixed(2)} no próximo trabalho para atingir a média necessária de ${notaDesejada} para aprovação neste trimestre.`;
 }
+    } else {
+        if (notaNecessaria > 100){
+                mensagem += `Infelizmente, mesmo que você tire a nota máxima no próximo trabalho, não será suficiente para atingir a média necessária de ${notaDesejada} para aprovação neste trimestre.`;
+    }
+    else if (notaNecessaria <= 0) {
+        mensagem += `Parabéns! Você já atingiu a média necessária de ${notaDesejada} para aprovação neste trimestre.`;
+    }
+    else {
+        mensagem += `Você precisa tirar pelo menos ${notaNecessaria.toFixed(2)} no próximo trabalho para atingir a média necessária de ${notaDesejada} para aprovação neste trimestre.`;
 
+    }
+
+}
 }
 
 
@@ -515,16 +657,22 @@ else {
 
 
 function ajustarLimiteNotas() {
-    const escalaSelecionada = document.getElementById('escalaNotas').value;
-    const maximo = parseInt(escalaSelecionada); //sera 10 ou 100, porque é valor das opções do select
+    const media = document.getElementById("escalaNotas").value
+
     
+        
 
 
     const inputsDeNota = document.querySelectorAll('input[type="number"][name^="nota"], #containerNotasTrabalhos input[type="number"]');
 
     inputsDeNota.forEach((input) => {
-        input.setAttribute('max', maximo);
-        input.setAttribute('step', maximo === 10 ? '0.1' : '1.0'); //se for escala 10, passo de 0.1, se for 100, passo de 1.0
+        if (media == 6 || media == 7 || media == 8 || media == 5 || media == 4 || media == 3 || media == 2 || media == 1 || media == 9 || media == 10) {
+        input.setAttribute('max', 10);
+        input.setAttribute('step', 10 ? '0.1' : '1.0'); //se for escala 10, passo de 0.1, se for 100, passo de 1.0
+        } else {
+        input.setAttribute('max', 100);
+        input.setAttribute('step', 100 ? '0.1' : '1.0'); //se for escala 10, passo de 0.1, se for 100, passo de 1.0
+        }
     });
 }
 
