@@ -598,14 +598,12 @@ var notaDesejada = media;
 const inputNotas = document.querySelectorAll('#containerNotasTrabalhos input');
 
 
-                
-        
 
 var mensagem = `Sua média atual do trimestre é ${mediaAtual}. `;
 
 inputNotas.forEach((input) => {
         if (input.value.trim() === '') {
-                mensagem += "Coloque algum número válido nos campos.";
+                mensagem = "Coloque algum número válido nos campos.";
                 }
                 });
                 
