@@ -597,11 +597,19 @@ var notaDesejada = media;
 
 var mensagem = `Sua média atual do trimestre é ${mediaAtual}. `;
 
+let erroDeValidade = false;
+
 inputNotas.forEach((input) => {
-        if (input.value.trim() === '') {
-                mensagem = "Coloque algum número válido nos campos.";
-                }
-                });
+    if (input.value.trim() === '' || isNaN(parseFloat(input.value))) {
+        erroDeValidade = true;
+    }
+});
+
+if (erroDeValidade) {
+    resultadoDiv.innerHTML = "Por favor, preencha todos os campos de nota com números válidos.";
+    // Adicione a lógica do setTimeout aqui também se quiser o timer
+    return; // <--- INTERROMPE A FUNÇÃO AQUI
+}
                 
                 
 
