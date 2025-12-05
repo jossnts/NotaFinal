@@ -595,8 +595,20 @@ const resultadoDiv = document.getElementById('resultadoParcial');
 var notaDesejada = media;
 
 
+const inputNotas = document.querySelectorAll('#containerNotasTrabalhos input');
 
-
+inputNotas.forEach((input) => {
+        if (input.value.trim() == '') {
+                
+        
+input.setCustomValidity("Preencha este campo")
+    input.reportValidity()
+    erroNaValidade = true;
+    return;
+ }
+  input.setCustomValidity(""); 
+    input.reportValidity();
+})
 
 
 var mensagem = `Sua média atual do trimestre é ${mediaAtual}. `;
