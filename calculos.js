@@ -597,23 +597,17 @@ var notaDesejada = media;
 
 const inputNotas = document.querySelectorAll('#containerNotasTrabalhos input');
 
-inputNotas.forEach((input) => {
-        if (input.value.trim() == '') {
+
                 
         
-input.setCustomValidity("Preencha este campo")
-    input.reportValidity()
-    erroNaValidade = true;
-    return;
- }
-  input.setCustomValidity(""); 
-    input.reportValidity();
-})
-
 
 var mensagem = `Sua média atual do trimestre é ${mediaAtual}. `;
 
-
+inputNotas.forEach((input) => {
+        if (input.value.trim() === '') {
+                mensagem += "Coloque algum número válido nos campos."
+                }
+                })
 
 if (mediaAtual >= notaDesejada) {
     mensagem += `Parabéns! Você já atingiu a média necessária de ${notaDesejada} para aprovação neste trimestre.`;
