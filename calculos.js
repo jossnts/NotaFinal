@@ -595,10 +595,6 @@ const resultadoDiv = document.getElementById('resultadoParcial');
 var notaDesejada = media;
 
 
-const inputNotas = document.querySelectorAll('#containerNotasTrabalhos input');
-
-
-
 var mensagem = `Sua média atual do trimestre é ${mediaAtual}. `;
 
 inputNotas.forEach((input) => {
