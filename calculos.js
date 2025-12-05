@@ -605,9 +605,11 @@ var mensagem = `Sua média atual do trimestre é ${mediaAtual}. `;
 
 inputNotas.forEach((input) => {
         if (input.value.trim() === '') {
-                mensagem += "Coloque algum número válido nos campos."
+                mensagem += "Coloque algum número válido nos campos.";
                 }
-                })
+                });
+                
+                
 
 if (mediaAtual >= notaDesejada) {
     mensagem += `Parabéns! Você já atingiu a média necessária de ${notaDesejada} para aprovação neste trimestre.`;
